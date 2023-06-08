@@ -15,6 +15,10 @@ export default {
     return {
         store
     }
+ },
+
+ methods: {
+
  }
 
 
@@ -30,6 +34,7 @@ export default {
       <div class="container">
          <SingleCard
          v-for="film in store.FilmList"
+         :key="film.id"
          :details="film" 
          />
       </div>
@@ -53,6 +58,7 @@ export default {
 @use "../src/styles/general.scss";
 
 h2 {
+   margin-left: 50px;
    font-size: 50px;
    font-weight: bold;
    color: white;
@@ -61,7 +67,7 @@ h2 {
 }
 .container {
     
-    
+   margin-left: 30px;
   width: 100%;
   height: 100%;
   display: flex;

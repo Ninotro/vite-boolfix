@@ -12,7 +12,7 @@ props: {
     return {
         isFlipped: false,
         languageFlags: {
-        en: 'https://images.nexusapp.co/assets/3a/7b/8c/185510738.jpg',
+        en: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/280px-Flag_of_the_United_Kingdom_%281-2%29.svg.png',
         it: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Flag_of_Italy_%28Pantone%2C_2003%E2%80%932006%29.svg/220px-Flag_of_Italy_%28Pantone%2C_2003%E2%80%932006%29.svg.png',
         fr: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/280px-Flag_of_France.svg.png",
         ja: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKqyEn6AWE2Bt-M9ORC208tltLhTAOcnYGt0eIb5xz&s",
@@ -41,9 +41,9 @@ props: {
       }
   
   },
-  getRoundedVote() {
-    return Math.ceil(this.series.vote_average / 2);
-  },
+  getRoundedVote(){
+  return Math.ceil(this.series.vote_average / 2);
+}
   }
 
 }
@@ -78,6 +78,7 @@ props: {
         </div>
       </h3>
       <p>Overview: {{ series.overview }}</p>
+      
       </div>
     </div>
     
@@ -110,6 +111,8 @@ props: {
 
     .card-front,
     .card-back {
+
+      font-size: 30px;
       position: absolute;
       width: 100%;
       height: 100%;
@@ -141,10 +144,12 @@ props: {
     }
 
     .card-back {
+      font-size: 30px;
       background-color: black;
       transform: rotateY(180deg);
       display: flex;
       flex-direction: column;
+      overflow-y: auto;
       
       
 

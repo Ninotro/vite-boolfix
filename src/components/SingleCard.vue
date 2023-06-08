@@ -12,7 +12,7 @@ props: {
     return {
         isFlipped: false,
         languageFlags: {
-        en: 'https://images.nexusapp.co/assets/3a/7b/8c/185510738.jpg',
+        en: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/280px-Flag_of_the_United_Kingdom_%281-2%29.svg.png',
         it: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Flag_of_Italy_%28Pantone%2C_2003%E2%80%932006%29.svg/220px-Flag_of_Italy_%28Pantone%2C_2003%E2%80%932006%29.svg.png',
         fr: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/280px-Flag_of_France.svg.png",
         ja: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKqyEn6AWE2Bt-M9ORC208tltLhTAOcnYGt0eIb5xz&s",
@@ -44,6 +44,7 @@ props: {
   getRoundedVote() {
     return Math.ceil(this.details.vote_average / 2);
   },
+  
   }
   }
   
@@ -75,9 +76,10 @@ props: {
           </template>
         </h3>  
         <div class="rating">
-          <i v-for="index in 5" :key="index" :class="{ 'fas fa-star': index <= getRoundedVote(), 'far fa-star': index > getRoundedVote() }"></i>
+          <i v-for="index in 5" :key="index" :class="{ 'fas fa-star': index <= Math.floor(getRoundedVote()), 'far fa-star': index > Math.floor(getRoundedVote()) }"></i>
         </div>
         <p>Overview: {{ details.overview }}</p>
+        
       </div>
     </div>
     
@@ -158,12 +160,12 @@ props: {
   }
 
   .fas.fa-star {
-  font-size: 15px;
+  font-size: 30px;
   color: yellow
 }
 
 .far.fa-star {
-  font-size: 15px;
+  font-size: 30px;
   color: white;
 }
 

@@ -39,11 +39,13 @@ export default {
   justify-content: space-between;
   div {
     color: red;
-    font-size: 50px;
+    font-size: 80px;
     margin-left: 50px;
+    font-weight: bold;
   }
 
   div {
+    margin-right: 100px;
     input {
     color: black;
    
@@ -51,6 +53,7 @@ export default {
     margin-right: 50px;
     font-size: 30px;
     padding-left: 20px;
+    
    
   }
   button {
