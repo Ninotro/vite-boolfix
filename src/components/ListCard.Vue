@@ -1,12 +1,21 @@
 <script>
-import SingleCard from "./SingleCard.Vue"
+import { store } from "../store.js";
+import SingleCard from "./SingleCard.vue"
+import tvCard from "./tvCard.vue"
 
 export default {
     components : {
-        SingleCard
+       SingleCard,
+       tvCard
     },
  
- name :"ListCard"
+ name :"ListCard",
+
+ data() {
+    return {
+        store
+    }
+ }
 
 
 }
@@ -17,8 +26,24 @@ export default {
 <template>
 
     <section>
-        <SingleCard v-for="film in store.FilmList" 
-        :details="film"/>
+      <h2>FILM:</h2>
+      <div class="container">
+         <SingleCard
+         v-for="film in store.FilmList"
+         :details="film" 
+         />
+      </div>
+      <h2>SERIE TV:</h2>
+      <div class="container">
+         <tvCard
+         v-for="tvShow in store.tvList"
+        :key="tvShow.id"
+        :series="tvShow"
+         />
+      </div>
+       
+      
+
     </section>    
     
    
@@ -27,7 +52,21 @@ export default {
 <style lang="scss" scoped>
 @use "../src/styles/general.scss";
 
-
-
+h2 {
+   font-size: 50px;
+   font-weight: bold;
+}
+.container {
+    
+    
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+   
+}
 
 </style>

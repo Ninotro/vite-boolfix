@@ -2,7 +2,7 @@
 import axios from "axios";
 import { store } from "./store.js";
 import AppHeader from './components/AppHeader.vue';
-import ListCard from "./components/ListCard.vue";
+import ListCard from "./components/ListCard.Vue"
 
 
 
@@ -11,49 +11,61 @@ import ListCard from "./components/ListCard.vue";
 export default {
   components: {
     AppHeader,
-    ListCard,
-    
-    
+    ListCard
   },
   data () {
     return {
       store
     }
   },
+
   methods: {
-    getFilm() {
-      axios.get(store.apiUrl)
-      .then(res => {
-        store.FilmList = res.data.results
-        store.loading = false
+    searchMovies() {
+      let myUrl=store.apiUrl
+      let moviesUrl=store.tvUrl
+
+      if (store.searchQuery !== "") {
+        myUrl += `=${store.searchQuery}`;
+        moviesUrl +=`&query=${store.searchQuery}`;
+
+        
+      }
+      axios.get(myUrl) 
        
+    
+      .then( res => {
+        store.FilmList= res.data.results
+        
+
       })
-      .catch(err => {
+      .catch (err =>{
         console.log(err);
+      });
+
+      axios.get(moviesUrl)
+      .then (res => {
+        store.tvList=res.data.results
+        console.log(moviesUrl);
       })
-      
-
-
-      
-    },
-
+      .catch (err =>{
+        console.log(err);
+      });
+    }
   },
   created() {
-    this.getFilm();
+    this.searchMovies();
     
-   
-    
+  }
 
-  },
-}
+ 
   
-
+}
 
 </script>
 
 <template>
  <header>
-   <AppHeader/>
+   <AppHeader @search="searchMovies"/>
  </header>
  <main>
   <ListCard/>
@@ -64,8 +76,8 @@ export default {
 @use "../src/styles/general.scss";
 main {
   background-color: grey;
-  height: 1000px;
-  flex: 1;
+  
+  
   padding-top: 100px;
 }
 </style>

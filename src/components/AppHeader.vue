@@ -1,7 +1,15 @@
 <script>
+import { store } from "../store.js";
 export default {
  
  name : "AppHeader",
+
+ data() {
+    return {
+        store,
+        
+    }
+ }
 
 
 }
@@ -12,7 +20,10 @@ export default {
 <template>
   <div id="container-header">
     <div>BOOLFIX</div>
-    <input type="text" placeholder="Inserisci il nome del film">
+    <div>
+      <input type="text" v-model.trim="store.searchQuery" placeholder="Inserisci il nome del film" />
+      <button @click="$emit('search')">Cerca</button>
+    </div>
   </div>
  
 </template>
@@ -32,7 +43,8 @@ export default {
     margin-left: 50px;
   }
 
-  input {
+  div {
+    input {
     color: black;
    
     height: 50px;
@@ -41,5 +53,14 @@ export default {
     padding-left: 20px;
    
   }
+  button {
+    height: 50px;
+    width: 100px;
+    font-size: 30px;
+  }
 }
+
+  }
+
+ 
 </style>

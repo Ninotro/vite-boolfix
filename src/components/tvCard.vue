@@ -2,12 +2,12 @@
 export default {
   
 props: {
-  details:Object
+  series:Object
 
 },
   
  
- name :"SingleCard",
+ name :"tvCard",
  data () {
     return {
         isFlipped: false,
@@ -34,14 +34,13 @@ props: {
       if (posterPath) {
         return "https://image.tmdb.org/t/p/w500" + posterPath;
       } else {
-        return "https://boolfix-jdonzelli.netlify.app/img/logo.png"; // 
+        return "https://boolfix-jdonzelli.netlify.app/img/logo.png"; // Immagine di fallback quando il poster path non è disponibile
       }
   
   }
   }
-  }
 
-
+}
 
 
 
@@ -54,20 +53,20 @@ props: {
  
     <div class="card" @click="flipCard">
       <div class="card-front">
-        <img  :src="getImageUrl(details.poster_path)" alt="paperino">
+        <img  :src="getImageUrl(series.poster_path)" alt="paperino">
       </div>
       <div class="card-back">
-        <h3>Titolo: {{ details.title }}</h3>
-        <h3>Titolo originale: {{ details.original_title }}</h3>
+        <h3>Titolo: {{ series.name }}</h3>
+        
         <h3 class="languages">Lingua:
-          <template v-if="getLanguageFlag(details.original_language)">
-            <img :src="getLanguageFlag(details.original_language)" :alt="details.original_language">
+          <template v-if="getLanguageFlag(series.original_language)">
+            <img :src="getLanguageFlag(series.original_language)" :alt="series.original_language">
           </template>
           <template v-else>
-            <span>{{details.original_language}}</span>
+            <span>{{series.original_language}}</span>
           </template>
         </h3>  
-        <h3>Voto: {{ details.vote_average }}</h3>
+        <h3>Voto: {{ series.vote_average }}</h3>
       </div>
     </div>
     
