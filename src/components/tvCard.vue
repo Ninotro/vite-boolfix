@@ -16,7 +16,10 @@ props: {
         it: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Flag_of_Italy_%28Pantone%2C_2003%E2%80%932006%29.svg/220px-Flag_of_Italy_%28Pantone%2C_2003%E2%80%932006%29.svg.png',
         fr: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/280px-Flag_of_France.svg.png",
         ja: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKqyEn6AWE2Bt-M9ORC208tltLhTAOcnYGt0eIb5xz&s",
-        es: "https://www.cosepercrescere.it/wp-content/uploads/2014/06/SPAGNA.jpg"
+        es: "https://www.cosepercrescere.it/wp-content/uploads/2014/06/SPAGNA.jpg",
+        de: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/1280px-Flag_of_Germany.svg.png",
+        nl: "https://www.novalibandiere.it/wp-content/uploads/Olanda.jpg",
+        zh: "https://cdn.britannica.com/90/7490-004-BAD4AA72/Flag-China.jpg"
         }
     }
   },
@@ -32,12 +35,15 @@ props: {
   },
   getImageUrl(posterPath) {
       if (posterPath) {
-        return "https://image.tmdb.org/t/p/w500" + posterPath;
+        return "https://image.tmdb.org/t/p/w342" + posterPath;
       } else {
         return "https://boolfix-jdonzelli.netlify.app/img/logo.png"; // Immagine di fallback quando il poster path non è disponibile
       }
   
-  }
+  },
+  getRoundedVote() {
+    return Math.ceil(this.series.vote_average / 2);
+  },
   }
 
 }
@@ -66,7 +72,12 @@ props: {
             <span>{{series.original_language}}</span>
           </template>
         </h3>  
-        <h3>Voto: {{ series.vote_average }}</h3>
+        <h3>Voto:
+        <div class="rating">
+          <i v-for="index in 5" :key="index" :class="{ 'fas fa-star': index <= getRoundedVote(), 'far fa-star': index > getRoundedVote() }"></i>
+        </div>
+      </h3>
+      <p>Overview: {{ series.overview }}</p>
       </div>
     </div>
     
@@ -144,8 +155,14 @@ props: {
     }
   }
 
- 
+  .fas.fa-star {
+  font-size: 15px;
+  color: yellow
+}
 
-
+.far.fa-star {
+  font-size: 15px;
+  color: white;
+}
 
 </style>

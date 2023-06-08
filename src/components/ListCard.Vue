@@ -55,6 +55,9 @@ export default {
 h2 {
    font-size: 50px;
    font-weight: bold;
+   color: white;
+   margin-bottom: 30px;
+   margin-top: 30px;
 }
 .container {
     

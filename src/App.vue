@@ -3,6 +3,7 @@ import axios from "axios";
 import { store } from "./store.js";
 import AppHeader from './components/AppHeader.vue';
 import ListCard from "./components/ListCard.Vue"
+import '@fortawesome/fontawesome-free/css/all.css';
 
 
 
@@ -54,7 +55,7 @@ export default {
   },
   created() {
     this.searchMovies();
-    
+
   }
 
  
